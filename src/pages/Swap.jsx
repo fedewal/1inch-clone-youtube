@@ -1,9 +1,9 @@
 import React from 'react'
 
-const swap = () => {
+const Swap = () => {
   return (
-    <div>swap</div>
+    <div>Swap</div>
   )
 }
 
-export default swap
+export default Swap
