@@ -1,6 +1,6 @@
 import React from 'react'
-import { Navbar } from 'react-bootstrap'
-import Footer from '../components/Footer'
+import Navbar from '../components/Navbars/MainNavbar'
+import Footer from '../components/Footers/MainFooter'
 import Section1 from '../containers/Section1'
 import Section2 from '../containers/Section2'
 import Section3 from '../containers/Section3'
