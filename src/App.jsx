@@ -1,7 +1,7 @@
-import React from 'react'
-import { Route, Routes } from 'react-router-dom'
-import {Home} from './pages/Home'
-import {Swap} from './pages/Swap'
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Home from './pages/Home';
+import Swap from './pages/Swap';
 
 const App = () => {
   return (
