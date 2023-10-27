@@ -1,10 +1,14 @@
-import { Button } from 'bootstrap'
+import { Button } from '@mui/material'
 import React from 'react'
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
-const LaunchButton = (sx={}, ...props) => {
+const LaunchButton = ({sx={}, ...props}) => {
   return (
-    <Button variant="contained" sx={{border:4, ...sx}}{...propx}>Launch dApp</Button>
+    <Button variant="contained" sx={{borderRadius: 4, ...sx}}{...props}>
+        Launch dApp
+        <KeyboardArrowRightIcon/>
+    </Button>
   )
 }
 
-export default LaunchButton
+export default LaunchButton;
