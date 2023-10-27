@@ -1,8 +1,9 @@
+import { Box } from '@mui/material'
 import React from 'react'
 
 const Section2 = () => {
   return (
-    <div>Section2</div>
+    <Box sx={{height:500}}>Section2</Box>
   )
 }
 

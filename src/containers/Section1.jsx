@@ -1,10 +1,18 @@
 import React from "react";
-import { Container, Box, Stack, Typography, Button } from "@mui/material";
+import {
+  Container,
+  Box,
+  Stack,
+  Typography,
+  Button,
+  Hidden,
+} from "@mui/material";
 import { section1Content } from "../utils/content";
 import LaunchButton from "../components/buttons/LaunchButton";
 import GoogleIcon from "@mui/icons-material/Google";
 import AppleIcon from "@mui/icons-material/Apple";
-import { Google } from "@mui/icons-material";
+import useMeasure from "react-use-measure";
+import Title from "../components/Title/index";
 
 const {
   MainBG,
@@ -32,27 +40,87 @@ const CustomButton = ({ children }) => (
 );
 
 const Section1 = () => {
+  const [ref, { height }] = useMeasure();
   return (
     <Box>
       {/*main background*/}
-      <Box sx={{ position: "fixed", zIndex: -25, top: 0, left: 0, right: 0 }}>
-        <img src={MainBG} />
+      <Box sx={{ position: "fixed", zIndex: -10, top: 0, left: 0, right: 0 }}>
+        <img src={MainBG} style={{ width: "100%" }} />
       </Box>
       {/*background elements*/}
       <Box
-        sx={{ position: "absolute", with: "100%", top: 0, left: 0, right: 0 }}
+        ref={ref}
+        sx={{
+          position: "absolute",
+          width: "100%",
+          zIndex: -1,
+          top: 0,
+          left: 0,
+          right: 0,
+        }}
       >
-        <img src={ShootingStarImage} style={{ position: "absolute" }} />
-        <img src={TreesImage} style={{ position: "absolute" }} />
-        <img src={CliffImage} style={{ position: "absolute" }} />
-        <img src={HorseImage} style={{ position: "absolute" }} />
+        <img src={MainBG} style={{ width: "100%", opacity: 0 }} />
+        <img
+          src={ShootingStarImage}
+          style={{
+            position: "absolute",
+            with: "100%",
+            top: "30px",
+            right: "15%",
+            width: "500px",
+          }}
+        />
+        <Hidden mdDown>
+          <img
+            src={TreesImage}
+            style={{
+              position: "absolute",
+              width: "100%",
+              bottom: 0,
+              right: 0,
+              left: 0,
+            }}
+          />
+        </Hidden>
+
+        <img
+          src={CliffImage}
+          style={{
+            position: "absolute",
+            height: "100%",
+            right: 0,
+            top: 0,
+            backgroundSize: "cover",
+          }}
+        />
+        <img
+          src={HorseImage}
+          style={{
+            position: "absolute",
+            height: "38%",
+            right: "14%",
+            bottom: "45%",
+            transform: "rotate(7deg)",
+          }}
+        />
+        <Box
+          sx={{
+            bgcolor: "background.default",
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: "500px",
+            top: height,
+          }}
+        ></Box>
       </Box>
       {/*content*/}
       <Container sx={{ height: "80vh" }}>
         <Stack sx={{ height: "inherit" }} justifyContent="center">
-          <Typography variant="h1" sx={{ letterSpacing: "0.02em", mb: 1 }}>
+          <Title variant={{xs:"h3", sm:"h2", md:"h1"}} sx={{ letterSpacing: "0.02em", mb: 1 }}>
             {title}
-          </Typography>
+          </Title>
 
           <Typography variant="h2" sx={{ letterSpacing: "0.05em", mb: 5 }}>
             {subtitle}
