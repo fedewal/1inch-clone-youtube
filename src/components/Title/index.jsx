@@ -5,7 +5,7 @@ const Title = ({ variant = "h6", sx = {}, children, ...props }) => {
   const _component =
     typeof variant !== "object"
       ? variant
-      : variant.xl || variant.md || variant.sm || variant.sx || "";
+      : variant.xl || variant.md || variant.sm || variant.sx || "h6";
 
   const _variantStyles =
     typeof variant !== "object"

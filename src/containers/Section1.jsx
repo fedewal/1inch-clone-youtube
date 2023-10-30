@@ -6,6 +6,7 @@ import {
   Typography,
   Button,
   Hidden,
+  useMediaQuery,
 } from "@mui/material";
 import { section1Content } from "../utils/content";
 import LaunchButton from "../components/buttons/LaunchButton";
@@ -13,6 +14,7 @@ import GoogleIcon from "@mui/icons-material/Google";
 import AppleIcon from "@mui/icons-material/Apple";
 import useMeasure from "react-use-measure";
 import Title from "../components/Title/index";
+import { useTheme } from "@emotion/react";
 
 const {
   MainBG,
@@ -24,7 +26,7 @@ const {
   subtitle,
 } = section1Content;
 
-const CustomButton = ({ children }) => (
+const CustomButton = ({ children, ...props }) => (
   <Button
     variant="outlined"
     sx={{
@@ -34,12 +36,15 @@ const CustomButton = ({ children }) => (
       borderColor: "text.primary",
       height: 58,
     }}
+    {...props}
   >
     {children}
   </Button>
 );
 
 const Section1 = () => {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const [ref, { height }] = useMeasure();
   return (
     <Box>
@@ -116,22 +121,33 @@ const Section1 = () => {
         ></Box>
       </Box>
       {/*content*/}
-      <Container sx={{ height: "80vh" }}>
-        <Stack sx={{ height: "inherit" }} justifyContent="center">
-          <Title variant={{xs:"h3", sm:"h2", md:"h1"}} sx={{ letterSpacing: "0.02em", mb: 1 }}>
+      <Container
+        sx={{ maxWidth:'80%', height: "120vh", mt: 8, [theme.breakpoints.up("md")]: { mt: 6 } }}
+      >
+        <Stack sx={{ height: "100%" }} justifyContent="center">
+          <Title
+            variant={{ xs: "h3", sm: "h2", md: "h1" }}
+            sx={{ letterSpacing: "0.02em", mb: 1 }}
+          >
             {title}
           </Title>
 
-          <Typography variant="h2" sx={{ letterSpacing: "0.05em", mb: 5 }}>
+          <Title
+            variant={{ xs: "h4", sm: "h3", md: "h2" }}
+            sx={{ fontWeight: 500, letterSpacing: "0.05em", mb: 5 }}
+          >
             {subtitle}
-          </Typography>
+          </Title>
           <Stack
             direction={{ xs: "column", md: "row" }}
             alignItems="center"
             spacing={4}
           >
-            <LaunchButton sx={{ height: 58, px: 3 }} />
-            <CustomButton>
+            <LaunchButton
+              fullWidth={isSmallScreen}
+              sx={{ height: 58, px: 3 }}
+            />
+            <CustomButton fullWidth={isSmallScreen}>
               <AppleIcon sx={{ fontSize: 36, ml: -1 }} />
               <Stack sx={{ textAlign: "left", ml: 1 }}>
                 <Typography variant="caption" sx={{ lineHeight: 1 }}>
@@ -140,7 +156,7 @@ const Section1 = () => {
                 <Typography variant="h5">App Store</Typography>
               </Stack>
             </CustomButton>
-            <CustomButton>
+            <CustomButton fullWidth={isSmallScreen}>
               <GoogleIcon sx={{ fontSize: 36, ml: -1 }} />
               <Stack sx={{ textAlign: "left", ml: 1 }}>
                 <Typography variant="caption" sx={{ lineHeight: 1 }}>
